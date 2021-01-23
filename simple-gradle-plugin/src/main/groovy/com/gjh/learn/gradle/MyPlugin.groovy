@@ -12,6 +12,16 @@ class MyPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         println("beginning of plugin 'MyPlugin'")
+
+        writeProperty(project)
+        setMyProperty(project)
+    }
+    void writeProperty(Project project) {
+        println("write property")
+        project.extensions.create('createproperty', MyPluginExtension)
+    }
+
+    void setMyProperty(Project project) {
         try {
             println("start find ext")
             project.extensions.findByName('ext').with {
@@ -28,7 +38,9 @@ class MyPlugin implements Plugin<Project> {
             println("modify properties error: " + e)
         }
         println("finish apply plugin 'MyPlugin'")
+    }
 
+    void writeTask(Project project) {
         project.task('myTask') {
             group 'helloworld'
             description 'This is a task named myTask, created in myPlugin'

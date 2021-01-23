@@ -7,11 +7,34 @@ import org.gradle.api.Project
  *
  * created on 2021/1/23
  *
- * @author kevinlights
- **/
+ * @author kevinlights*  */
 class MyPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         println("beginning of plugin 'MyPlugin'")
+        try {
+            println("start find ext")
+            project.extensions.findByName('ext').with {
+                println("found ext")
+                getProperty('properties').with {
+                    println("found properties")
+                    setProperty('property1', 30)
+                    setProperty('property2', 'Hello')
+                }
+                setProperty('version', '1.0')
+                println("modify properties completed")
+            }
+        } catch (Exception e) {
+            println("modify properties error: " + e)
+        }
+        println("finish apply plugin 'MyPlugin'")
+
+        project.task('myTask') {
+            group 'helloworld'
+            description 'This is a task named myTask, created in myPlugin'
+            doFirst {
+                println("run in myTask it $it")
+            }
+        }
     }
 }

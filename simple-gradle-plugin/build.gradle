@@ -1,0 +1,40 @@
+plugins {
+    id 'groovy'
+}
+
+group 'com.gjh.learn.gradle'
+version '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        url 'https://maven.aliyun.com/repository/public/'
+    }
+}
+
+dependencies {
+//    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenPub(MavenPublication) {
+            from components.java
+            pom {
+                name = 'Simple Gradle Plugin'
+                description = 'This is a test project for gradle plugin'
+                url = 'http://www.test.com'
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = '../repo'
+        }
+    }
+}

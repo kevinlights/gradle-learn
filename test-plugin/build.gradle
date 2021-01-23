@@ -1,0 +1,12 @@
+apply plugin: 'com.gjh.learn.gradle.myplugin'
+
+buildscript {
+    repositories {
+        maven {
+            url  '../repo'
+        }
+    }
+    dependencies {
+        classpath 'com.gjh.learn.gradle:simple-gradle-plugin:1.0-SNAPSHOT'
+    }
+}

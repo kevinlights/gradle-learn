@@ -1,3 +1,5 @@
 rootProject.name = 'gradle-learn'
 include 'hello-gradle-plugin'
+include 'simple-gradle-plugin'
+include 'test-plugin'
 

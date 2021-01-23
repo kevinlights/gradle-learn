@@ -5,15 +5,23 @@ plugins {
 group 'com.gjh.learn.gradle'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
+class GreetingPluginExtension {
+    String message = "Hello from GreetingPlugin"
+}
+class GreetingPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        def extension = project.extensions.create('greeting', GreetingPluginExtension)
+        project.task('hello') {
+            doLast {
+                println extension.message
+            }
+        }
+    }
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-}
+apply plugin: GreetingPlugin
 
-test {
-    useJUnitPlatform()
+greeting {
+    message='I am dynamic message'
 }

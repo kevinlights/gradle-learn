@@ -15,7 +15,7 @@ two different ways to create gradle plugins.
 
 note:
 
-1. you can publish the plugin jar by `maven-puglish` plugin
+1. you can publish the plugin jar by `maven-publish` plugin
 2. then publish plugin to local or other repository.
 3. use the plugin in `buildScript` closure 
 4. apply the plugin
